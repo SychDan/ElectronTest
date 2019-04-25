@@ -1,12 +1,12 @@
 {
-  "name": "electron-quick-start",
+  "name": "ElectronTest",
   "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "",
   "keywords": [
     "Electron",
     "quick",
@@ -14,9 +14,12 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
+  "author": "Sychev Daniil",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^4.1.4"
+  },
+  "dependencies": {
+    "update-electron-app": "^1.3.0"
   }
 }

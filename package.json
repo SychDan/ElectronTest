@@ -37,7 +37,8 @@
     "linux": {
       "category": "development",
       "target": [
-        "tar.gz"
+        "tar.gz",
+        "appImage"
       ]
     },
     "publish": [

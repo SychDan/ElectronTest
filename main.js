@@ -12,7 +12,7 @@ autoUpdater.requestHeaders = {"PRIVATE_TOKEN": "hMo3GxCcjYxJi4jszNJT"};
 autoUpdater.autoDownload =true;
 autoUpdater.setFeedURL({
   provider: "generic",
-  url: "https://gitlab.com/SychDan/electriontest-/jobs/artifacts/master/raw/dist?job=build"
+  url: "https://gitlab.com/api/v4/projects/12033795-/jobs/artifacts/master/raw/dist?job=build"
 });
 autoUpdater.logger.transports.file.level = "info";
 

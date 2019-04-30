@@ -7,11 +7,11 @@ const {autoUpdater} = require('electron-updater');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow = {};
 autoUpdater.logger = log;
-autoUpdater.requestHeaders = {"PRIVATE_TOKEN": "hMo3GxCcjYxJi4jszNJT"};
+autoUpdater.requestHeaders = {"PRIVATE_TOKEN": "4c1e59a8bcc4e04b6d30e55720bd82052acbf508"};
 autoUpdater.autoDownload =true;
 autoUpdater.setFeedURL({
   provider: "generic",
-  url: "https://gitlab.com/api/v4/projects/12033795-/jobs/artifacts/master/raw/dist?job=build"
+  url: "https://gitlab.com/SychDan/electriontest-/jobs/artifacts/master/download/dist?job=build"
 });
 autoUpdater.logger.transports.file.level = "info";
 

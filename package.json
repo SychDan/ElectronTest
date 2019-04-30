@@ -39,7 +39,7 @@
       "verifyUpdateCodeSignature": false
     },
     "linux": {
-      "category": "Utility",
+      "category": "Development",
       "target": [
         "deb",
         "snap",

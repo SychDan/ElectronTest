@@ -7,7 +7,8 @@
   "scripts": {
     "dist": "electron-builder",
     "start": "electron .",
-    "publish": "build -p always"
+    "publish": "build -p always",
+    "release": "build"
   },
   "repository": "gitlab:SychDan/ElectronTest",
   "author": {

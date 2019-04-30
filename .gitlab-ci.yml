@@ -5,6 +5,7 @@ stages:
   - build
 
 job_build:
+  image: sychdan/electronTestSBT
   stage: build
   artifacts:
     paths:

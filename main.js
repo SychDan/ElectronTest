@@ -1,6 +1,5 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu, ipcMain, protocol} = require('electron');
-const isDev = require('electron-is-dev');
 const log = require('electron-log');
 const {autoUpdater} = require('electron-updater');
 // require('update-electron-app')()
@@ -8,33 +7,13 @@ const {autoUpdater} = require('electron-updater');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow = {};
 autoUpdater.logger = log;
-// autoUpdater.requestHeaders = {"PRIVATE_TOKEN": "hMo3GxCcjYxJi4jszNJT"};
-// autoUpdater.autoDownload =true;
-// autoUpdater.setFeedURL({
-//   provider: "generic",
-//   url: "https://gitlab.com/api/v4/projects/12033795-/jobs/artifacts/master/raw/dist?job=build"
-// });
+autoUpdater.requestHeaders = {"PRIVATE_TOKEN": "hMo3GxCcjYxJi4jszNJT"};
+autoUpdater.autoDownload =true;
+autoUpdater.setFeedURL({
+  provider: "generic",
+  url: "https://gitlab.com/api/v4/projects/12033795-/jobs/artifacts/master/raw/dist?job=build"
+});
 autoUpdater.logger.transports.file.level = "info";
-
-let template = [];
-if (process.platform === 'darwin') {
-  // OS X
-  const name = app.getName();
-  template.unshift({
-    label: name,
-    submenu: [
-      {
-        label: 'About ' + name,
-        role: 'about'
-      },
-      {
-        label: 'Quit',
-        accelerator: 'Command+Q',
-        click() { app.quit(); }
-      },
-    ]
-  })
-}
 
 function createWindow () {
   // Create the browser window.
@@ -118,13 +97,6 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 })
 
 app.on('ready', function() {
-  if (!isDev) {
-    autoUpdater.checkForUpdates();
-  }
-  // Create the Menu
-  // const menu = Menu.buildFromTemplate(template);
-  // Menu.setApplicationMenu(menu);
-  // log.info(template.toLocaleString())
   createWindow();
   autoUpdater.checkForUpdates()
   // createDefaultWindow();

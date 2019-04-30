@@ -1,0 +1,24 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.gitlab.sychdan.ElectironTest
+mac:
+  category: development
+  target:
+    - zip
+    - dmg
+win:
+  target:
+    - nsis
+  verifyUpdateCodeSignature: false
+linux:
+  category: Development
+  target:
+    - deb
+    - snap
+    - tar.gz
+    - appImage
+publish:
+  - provider: generic
+    url: 'https://gitlab.com'
+electronVersion: 4.1.4

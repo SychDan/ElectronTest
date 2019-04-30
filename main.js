@@ -11,7 +11,8 @@ autoUpdater.requestHeaders = {"PRIVATE_TOKEN": "4c1e59a8bcc4e04b6d30e55720bd8205
 autoUpdater.autoDownload =true;
 autoUpdater.setFeedURL({
   provider: "generic",
-  url: "https://gitlab.com/SychDan/electriontest-/jobs/artifacts/master/download/dist?job=build"
+  url: "http://127.0.0.1:9000/"
+  // url: "https://gitlab.com/SychDan/electriontest-/jobs/artifacts/master/download/dist?job=build"
 });
 autoUpdater.logger.transports.file.level = "info";
 
@@ -23,10 +24,11 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true
     }
-  })
+  });
 
+  mainWindow.webContents.openDevTools();
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadURL(`file://${__dirname}/index.html#v${app.getVersion()}`);
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -68,14 +70,16 @@ app.on('activate', function () {
 // code. You can also put them in separate files and require them here.
 
 autoUpdater.on('checking-for-update', () => {
-  log.info('Checking for update');
-  sendStatusToWindow('Checking for update...');
+  log.info('Проверка обновления');
+  sendStatusToWindow('Проверка обновления...');
 })
 autoUpdater.on('update-available', (ev, info) => {
-  sendStatusToWindow('Update available.');
+  log.info('Обновление доступно');
+  sendStatusToWindow('Обновление доступно.');
 })
 autoUpdater.on('update-not-available', (ev, info) => {
-  sendStatusToWindow('Update not available.');
+  log.info('Обновление не доступно');
+  sendStatusToWindow('Обновление не доступно.');
 })
 autoUpdater.on('error', (ev, err) => {
   sendStatusToWindow('Ошибка во время автообновления.');
@@ -99,5 +103,4 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 app.on('ready', function() {
   createWindow();
   autoUpdater.checkForUpdates()
-  // createDefaultWindow();
 });

@@ -8,12 +8,11 @@
     <h1>Hello World!</h1>
 
     <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    Current version: <span id="version">V</span>
     <div id="messages" style="color: red;"></div>
     <script>
-
+      let version = window.location.hash.substring(1);
+      document.getElementById("version").innerText = version;
       // Listen for messages
       const {ipcRenderer} = require('electron');
       ipcRenderer.on('message', function(event, text) {

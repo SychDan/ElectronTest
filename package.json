@@ -5,14 +5,19 @@
   "main": "main.js",
   "private": true,
   "scripts": {
+    "dist": "electron-builder",
     "start": "electron .",
     "publish": "build -p always"
   },
   "repository": "gitlab:SychDan/ElectronTest",
-  "author": "Sychev Daniil",
+  "author": {
+    "name": "Sychev Daniil",
+    "email": "sych.daniil@yandex.ru"
+  },
   "dependencies": {
     "electron-is-dev": "^1.1.0",
     "electron-log": "^3.0.5",
+    "electron-simple-updater": "^1.5.0",
     "electron-updater": "^4.0.6"
   },
   "devDependencies": {
@@ -22,7 +27,7 @@
   "build": {
     "appId": "com.gitlab.sychdan.ElectironTest",
     "mac": {
-      "category": "your.app.category.type",
+      "category": "development",
       "target": [
         "zip",
         "dmg"
@@ -35,8 +40,10 @@
       "verifyUpdateCodeSignature": false
     },
     "linux": {
-      "category": "development",
+      "category": "Utility",
       "target": [
+        "deb",
+        "snap",
         "tar.gz",
         "appImage"
       ]
@@ -46,7 +53,6 @@
         "provider": "generic",
         "url": "https://gitlab.com"
       }
-
     ]
   }
 }

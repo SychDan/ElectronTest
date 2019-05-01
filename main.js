@@ -9,7 +9,7 @@ autoUpdater.autoDownload =true;
 autoUpdater.setFeedURL({
   provider: "generic",
   // url: "http://<your_host>:9000/"
-  url: "https://gitlab.com/sychdan/electriontest/-/jobs/artifacts/master/download/dist?job=job_build"
+  url: "https://gitlab.com/sychdan/electrontest/-/jobs/artifacts/master/download/dist?job=job_build"
 });
 autoUpdater.logger.transports.file.level = "info";
 

@@ -4,12 +4,12 @@ const {autoUpdater} = require('electron-updater');
 
 let mainWindow = {};
 autoUpdater.logger = log;
-autoUpdater.requestHeaders = {"PRIVATE_TOKEN": "4c1e59a8bcc4e04b6d30e55720bd82052acbf508"};
+autoUpdater.requestHeaders = {"PRIVATE_TOKEN": "hMo3GxCcjYxJi4jszNJT"};
 autoUpdater.autoDownload =true;
 autoUpdater.setFeedURL({
   provider: "generic",
-  url: "http://<your_host>:9000/"
-  // url: "https://gitlab.com/SychDan/electriontest-/jobs/artifacts/master/download/dist?job=build"
+  // url: "http://<your_host>:9000/"
+  url: "https://gitlab.com/SychDan/electriontest-/jobs/artifacts/master/download/dist?job=build"
 });
 autoUpdater.logger.transports.file.level = "info";
 

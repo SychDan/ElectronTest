@@ -9,7 +9,7 @@
     "start": "electron .",
     "build": "node_modules/.bin/electron-builder --win",
     "publish": "build -p always",
-    "release": "build"
+    "release": "build --win"
   },
   "repository": "gitlab:SychDan/ElectronTest",
   "author": {

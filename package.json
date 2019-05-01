@@ -7,7 +7,7 @@
   "scripts": {
     "dist": "electron-builder",
     "start": "electron .",
-    "build": "node_modules/.bin/electron-builder --win",
+    "build": "node_modules/.bin/electron-builder --linux",
     "publish": "build -p always",
     "release": "build"
   },

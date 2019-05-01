@@ -5,11 +5,11 @@ stages:
   - build
 
 job_build:
-  image: electronuserland/electron-builder
+  image: electronuserland/electron-builder:wine
   stage: build
   artifacts:
     paths:
       - $CI_PROJECT_DIR/dist/*.*
   script:
     - sed "s/0.0.0/${VERSION_ID}/g" package.json > _package.json && mv _package.json package.json
-    - npm install && npm run dist
+    - npm install && npm run release

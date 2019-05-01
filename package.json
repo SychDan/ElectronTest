@@ -18,11 +18,11 @@
   },
   "dependencies": {
     "electron-log": "^3.0.5",
-    "electron-updater": "^2.21.4"
+    "electron-updater": "^2.7.2"
   },
   "devDependencies": {
-    "electron": "^4.1.4",
-    "electron-builder": "^20.39.0"
+    "electron": "^1.6.11",
+    "electron-builder": "^19.16.2"
   },
   "build": {
     "appId": "com.gitlab.sychdan.ElectironTest",

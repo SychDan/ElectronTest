@@ -5,7 +5,7 @@ stages:
   - build
 
 job_build:
-  image: electrionTest
+  image: electriontest
   stage: build
   artifacts:
     paths:

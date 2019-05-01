@@ -1,6 +1,6 @@
 {
   "name": "ElectronTest",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
   "private": true,
@@ -36,8 +36,8 @@
     },
     "win": {
       "target": [
-        "zip",
-        "nsis"
+        "nsis",
+        "zip"
       ],
       "verifyUpdateCodeSignature": false
     },

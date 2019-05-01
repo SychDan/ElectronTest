@@ -5,7 +5,7 @@ stages:
   - build
 
 job_build:
-  image: slauta93/electron-builder-win
+  image: electronuserland/electron-builder
   stage: build
   artifacts:
     paths:

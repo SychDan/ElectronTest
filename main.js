@@ -4,7 +4,10 @@ const {autoUpdater} = require('electron-updater');
 
 let mainWindow = {};
 autoUpdater.logger = log;
-autoUpdater.requestHeaders = {"PRIVATE_TOKEN": "hMo3GxCcjYxJi4jszNJT"};
+autoUpdater.requestHeaders = {
+  "PRIVATE_TOKEN": "AxshFXC7nExHkC2zNkBw",
+  authorization: ''
+};
 autoUpdater.autoDownload =true;
 autoUpdater.setFeedURL({
   provider: "generic",

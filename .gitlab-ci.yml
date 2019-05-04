@@ -5,7 +5,7 @@ stages:
   - build
 
 build:
-  image: slauta93/electron-builder-win
+  image: electronuserland/electron-builder:wine
   stage: build
   artifacts:
     paths:

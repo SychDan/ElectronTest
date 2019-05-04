@@ -4,7 +4,7 @@ variables:
 stages:
   - build
 
-job_build:
+build:
   image: slauta93/electron-builder-win
   stage: build
   artifacts:

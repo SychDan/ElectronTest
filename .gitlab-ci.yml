@@ -4,8 +4,8 @@ variables:
 stages:
   - build
 
-job_build:
-  image: electronuserland/electron-builder:wine
+build:
+  image: slauta93/electron-builder-win
   stage: build
   artifacts:
     paths:

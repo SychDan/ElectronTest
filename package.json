@@ -1,59 +1,46 @@
 {
-  "name": "ElectronTest",
-  "version": "1.0.1",
-  "description": "A minimal Electron application",
+  "name": "electron-updater-gitlab",
+  "version": "0.0.0",
   "main": "main.js",
-  "private": true,
   "scripts": {
-    "dist": "electron-builder",
     "start": "electron .",
+    "pack": "node_modules/.bin/electron-builder --dir",
     "build": "node_modules/.bin/electron-builder --win",
-    "publish": "build -p always",
-    "release": "build --win"
-  },
-  "repository": "gitlab:SychDan/ElectronTest",
-  "author": {
-    "name": "Sychev Daniil",
-    "email": "sych.daniil@yandex.ru"
-  },
-  "dependencies": {
-    "electron-log": "^3.0.5",
-    "electron-updater": "^2.21.4"
-  },
-  "devDependencies": {
-    "electron": "^1.6.11",
-    "electron-builder": "^19.16.2"
+    "postinstall": "",
+    "install": "node-gyp install"
   },
   "build": {
-    "appId": "com.gitlab.sychdan.ElectironTest",
-    "mac": {
-      "category": "development",
-      "target": [
-        "zip",
-        "dmg"
-      ]
-    },
-    "win": {
-      "target": [
-        "nsis",
-        "zip"
-      ],
-      "verifyUpdateCodeSignature": false
-    },
-    "linux": {
-      "category": "Development",
-      "target": [
-        "deb",
-        "snap",
-        "tar.gz",
-        "appImage"
-      ]
-    },
+    "appId": "com.electron.app",
     "publish": [
       {
         "provider": "generic",
         "url": "https://gitlab.com"
       }
-    ]
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "verifyUpdateCodeSignature": false
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "identity": "Mac Developer: username (XXXXXXXX)",
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^2.7.2"
+  },
+  "devDependencies": {
+    "electron": "1.6.11",
+    "electron-builder": "^19.16.2"
   }
 }

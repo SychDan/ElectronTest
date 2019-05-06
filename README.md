@@ -7,60 +7,55 @@ For SberTech
 ```
 {
   "name": "ElectronTest",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "version": "0.0.0",
   "main": "main.js",
-  "private": true,
-  "scripts": { // их можно запускать через npm <название_скрипта>
-    "dist": "electron-builder",
-    "start": "electron .",
-    "publish": "build -p always"
-  },
-  "repository": "gitlab:SychDan/ElectronTest",
+  "description": "A minimal Electron application with update via server and public repo in gitlab",
   "author": {
     "name": "Sychev Daniil",
     "email": "sych.daniil@yandex.ru"
   },
-  "dependencies": {
-    "electron-is-dev": "^1.1.0",
-    "electron-log": "^3.0.5",
-    "electron-simple-updater": "^1.5.0",
-    "electron-updater": "^4.0.6"
-  },
-  "devDependencies": {
-    "electron": "^4.1.4",
-    "electron-builder": "^20.39.0"
+  "scripts": { // их можно запускать через npm <название_скрипта>
+    "start": "electron .",
+    "pack": "node_modules/.bin/electron-builder --dir",
+    "build": "node_modules/.bin/electron-builder --win",
+    "postinstall": "",
+    "install": "node-gyp install",
+    "publish": "build -p always"
   },
   "build": {
     "appId": "com.gitlab.sychdan.ElectironTest",
-    "mac": {
-      "category": "development",
-      "target": [
-        "zip",
-        "dmg"
-      ]
-    },
-    "win": {
-      "target": [
-        "nsis" // Создает exe файл для инсталяции
-      ],
-      "verifyUpdateCodeSignature": false,
-    },
-    "linux": {
-      "category": "Utility",
-      "target": [
-        "deb",
-        "snap",
-        "tar.gz",
-        "appImage" // создает appImage файл для запуска приложения
-      ]
-    },
     "publish": [
       {
         "provider": "generic",
         "url": "https://gitlab.com"
       }
-    ]
+    ],
+    "win": {
+      "target": [
+        "nsis" // Создает exe файл для инсталяции
+      ],
+      "verifyUpdateCodeSignature": false
+    },
+    "mac": {
+      "category": "development",
+      "identity": "",
+      "target": [
+        "dmg"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage" // создает appImage файл для запуска приложения
+      ]
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^4.0.6",
+    "electron-log": "^3.0.5"
+  },
+  "devDependencies": {
+    "electron": "4.0.8",
+    "electron-builder": "^20.39.0"
   }
 }
 ```
@@ -210,7 +205,7 @@ stages: // Перечисление этапов CI
   - build 
 
 job_build: // Название job
-  image: electronuserland/electron-builder:wine // Docker-образ
+  image: electronuserland/electron-builder:wine // Docker-образ. Взят публичный, чтобы не создавать свой.
   stage: build //Этап 
   artifacts: // Артефакты
     paths:
@@ -220,5 +215,34 @@ job_build: // Название job
     - npm install && npm run build
 
 ```
-Файл 
-
+Файл gitlab-ci.yml позволяет запускать тесты, предварительные настройки окружения при пуше коммита в репозиторий.
+<br>
+Далее необходимо прописать путь до артефактов. Для этого замените в файле main.js строчку
+```
+   url: "http://<your_host>:9000/"
+```
+На
+```
+url: "https://gitlab.com/<Onwer>/<repo>/-/jobs/artifacts/master/raw/dist?job=job_build"
+```
+Где Owner - владелец репозитория, repo - сам репозиторий, master - ветка, job_build - название job, которое выполняется при коммите проекта и который описан в gilab-ci.
+<br>
+raw позволяет осуществить автообновление. Есть и другие параметры - browse (можно в браузере получить доступ к папке с файлами обновления), 
+download (позволяет скачивать прямо в браузере и с консоли при помощи команды curl)
+<br>
+Также необходимо добавить параметры в заголовок запроса:
+```
+autoUpdater.requestHeaders = {
+     "PRIVATE_TOKEN": "<токен>", 
+     authorization: '' // Этот параметр позволяет избавиться от кэширования, если он не нужен при автообновлении.
+   };
+   autoUpdater.autoDownload =true;
+```
+<br>
+После этого можно закоммитить изменения и запушить в репозиторий в gitlab.
+<br>
+Прежде чем начать обновление, убедитесь, что job завершился. Помотреть это можно в списке всех работ:
+ https://www.giltab/owner/repo/-/jobs
+ <br>
+ Обратите внимание, что в файле gitlab-ci запускается скрипт build из package.json, который запускает сборку проекта в среде windows.
+ Для других ОС требуются другие параметры.

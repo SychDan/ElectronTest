@@ -1,7 +1,12 @@
 {
-  "name": "electron-updater-gitlab",
+  "name": "ElectronTest",
   "version": "0.0.0",
   "main": "main.js",
+  "description": "A minimal Electron application with update via server and public repo in gitlab",
+  "author": {
+    "name": "Sychev Daniil",
+    "email": "sych.daniil@yandex.ru"
+  },
   "scripts": {
     "start": "electron .",
     "pack": "node_modules/.bin/electron-builder --dir",
@@ -10,7 +15,7 @@
     "install": "node-gyp install"
   },
   "build": {
-    "appId": "com.electron.app",
+    "appId": "ElectronTest",
     "publish": [
       {
         "provider": "generic",
@@ -24,8 +29,8 @@
       "verifyUpdateCodeSignature": false
     },
     "mac": {
-      "category": "public.app-category.productivity",
-      "identity": "Mac Developer: username (XXXXXXXX)",
+      "category": "development",
+      "identity": "",
       "target": [
         "dmg"
       ]

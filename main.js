@@ -5,14 +5,14 @@ const {autoUpdater} = require('electron-updater');
 let mainWindow = {};
 autoUpdater.logger = log;
 autoUpdater.requestHeaders = {
-  "PRIVATE_TOKEN": "AxshFXC7nExHkC2zNkBw",
+  "PRIVATE_TOKEN": "<TOKEN>",
   authorization: ''
 };
 autoUpdater.autoDownload =true;
 autoUpdater.setFeedURL({
   provider: "generic",
   // url: "http://<your_host>:9000/"
-  url: "https://gitlab.com/SychDan/electrontest/-/jobs/artifacts/master/raw/dist?job=job_build"
+  url: "https://gitlab.com/<Owner>/<repo>/-/jobs/artifacts/master/raw/dist?job=job_build"
 });
 autoUpdater.logger.transports.file.level = "info";
 

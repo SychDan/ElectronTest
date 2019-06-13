@@ -5,7 +5,7 @@ stages:
   - build
 
 job_build:
-  image: electronuserland/electron-builder:wine
+  image: node
   stage: build
   artifacts:
     paths:

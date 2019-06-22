@@ -1,6 +1,11 @@
 const {app, BrowserWindow, Menu, ipcMain, protocol} = require('electron');
 const log = require('electron-log');
 const {autoUpdater} = require('electron-updater');
+const ipc = require('electron').ipcMain;
+
+let flag = true;
+
+// https://github.com/kahlil/electron-communication-example
 
 let mainWindow = {};
 autoUpdater.logger = log;
@@ -12,9 +17,25 @@ autoUpdater.autoDownload =true;
 autoUpdater.setFeedURL({
   provider: "generic",
   // url: "http://<your_host>:9000/"
-  url: "https://gitlab.com/<Owner>/<repo>/-/jobs/artifacts/master/raw/dist?job=job_build"
+  url: "https://gitlab.com/sychdan/electrontest/-/jobs/artifacts/master/raw/dist?job=job_build"
 });
 autoUpdater.logger.transports.file.level = "info";
+
+ipc.on('reply', (event, message) => {
+  console.log(event, message);
+  mainWindow.webContents.send('messageFromMain', `This is the message from the second window: ${message}`);
+})
+
+let dialogWindow = {};
+
+function createDialogWindow() {
+  dialogWindow = new BrowserWindow({
+    width:600,
+    height:400
+  })
+
+  dialogWindow.loadURL(`file://${__dirname}/dialog.html`);
+}
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -25,7 +46,8 @@ function createWindow () {
     }
   });
 
-  mainWindow.webContents.openDevTools();
+  if (flag) setTimeout(createDialogWindow, 1000);
+
   mainWindow.loadURL(`file://${__dirname}/index.html#v${app.getVersion()}`);
 
   mainWindow.on('closed', function () {
@@ -75,7 +97,11 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 })
 
 app.on('ready', function() {
-  createWindow();
-  autoUpdater.checkForUpdates()
+  if (flag) {
+    createWindow();
+  } else {
+    createWindow();
+  }
+  // autoUpdater.checkForUpdates()
 });
 

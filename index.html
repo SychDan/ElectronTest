@@ -10,6 +10,8 @@
     <!-- All of the Node.js APIs are available in this renderer process. -->
     Current version: <span id="version">V</span>
     <div id="messages" style="color: red;"></div>
+
+    <button id="open-second-window">Open Second Window</button>
     <script>
       let version = window.location.hash.substring(1);
       document.getElementById("version").innerText = version;

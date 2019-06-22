@@ -1,6 +1,6 @@
 {
   "name": "ElectronTest",
-  "version": "0.0.0",
+  "version": "10.0.0",
   "main": "main.js",
   "description": "A minimal Electron application with update via server and public repo in gitlab",
   "author": {
